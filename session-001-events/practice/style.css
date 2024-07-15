@@ -1,0 +1,7 @@
+#display{
+    background-image: url('img/undefined.svg');
+    height: 5rem;
+    aspect-ratio: 1;
+    background-position: center;
+    background-size: cover;
+}

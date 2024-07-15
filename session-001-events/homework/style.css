@@ -1,0 +1,9 @@
+.display{
+    display: grid;
+}
+
+.map-tile{
+    height: 2.5rem;
+    aspect-ratio: 1;
+    border: 1px solid;
+}
