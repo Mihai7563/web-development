@@ -6,14 +6,21 @@ const map = {
     tiles: []
 }
 
+const house = {
+    x: Math.floor(Math.random() * (map.cols - 1) + 1),
+    y: Math.floor(Math.random() * (map.rows - 1) + 1),
+    img: 'img/house.svg'
+}
+
 const player = {
     img: 'img/gorilla.svg',
     posX: 0,
     posY: 0,
+    moves: 0
 };
 
 const display = document.querySelector('.display');
-display.style.gridTemplateColumns = `repeat(${map.cols}, 1fr)`
+display.style.gridTemplateColumns = `repeat(${map.cols}, 1fr)`;
 
 for (let i = 0; i < map.rows; i++) {
     map.tiles[i] = [];
@@ -27,6 +34,10 @@ for (let i = 0; i < map.rows; i++) {
 }
 
 map.tiles[0][0].style.backgroundImage = `url(${player.img})`;
+
+map.tiles[house.y][house.x].style.backgroundImage = `url(${house.img})`;
+map.tiles[house.y][house.x].style.backgroundSize = 'cover';
+map.tiles[house.y][house.x].style.backgroundPosition = 'center';
 
 document.addEventListener('keyup', (event) => {
     switch (event.key) {
@@ -80,8 +91,15 @@ document.addEventListener('keyup', (event) => {
 })
 
 function movePlayer(y, x){
-    map.tiles[y][x].style.background = 'none';    
+    map.tiles[y][x].style.background = '#316F40';    
+
     map.tiles[player.posY][player.posX].style.backgroundImage = `url(${player.img})`;
     map.tiles[player.posY][player.posX].style.backgroundSize = 'cover';
     map.tiles[player.posY][player.posX].style.backgroundPosition = 'center';
+
+    player.moves++;
+
+    if(player.posX == house.x && player.posY == house.y){
+        console.log(`You won in ${player.moves} moves!`);
+    }
 }
