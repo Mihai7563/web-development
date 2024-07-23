@@ -3,13 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Gorilla Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
 </head>
 <body>
-    <h1>Homework - moving square</h1>
-
-    <div class="display"></div>
+    <div class="container">
+        <div class="game-elems-container">
+            <div class="title">HELP HARAMBE GET HOME</div>
+            <div class="display"></div>
+            <div class="bottom">
+                <button id="new-game-btn">NEW GAME</button>
+                <div class="moves-counter">
+                    Moves: <span id="moves"></span>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
