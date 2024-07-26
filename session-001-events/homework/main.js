@@ -127,11 +127,13 @@ function movePlayer(moveY, moveX){
 
     const endGameTitle = document.querySelector('.end-screen-card-header');
     const endScreen = document.querySelector('.end-screen');
+    const endMoves = document.querySelector('#final-moves');
 
     player.moves++;
     movesCounter.textContent = player.moves;
     if (pits.some(pit => pit.x == player.posX && pit.y == player.posY)) {
         endScreen.style.display = 'block';
+        endMoves.textContent = player.moves;
         endGameTitle.style.color = '#781110';
         endGameTitle.textContent = 'Oh no! Harambe fell into a pit!';
         document.removeEventListener('keyup', handleKeyUp);
@@ -139,6 +141,7 @@ function movePlayer(moveY, moveX){
 
     if(player.posX == house.x && player.posY == house.y){
         endScreen.style.display = 'block';
+        endMoves.textContent = player.moves;
         endGameTitle.style.color = '#356041';
         endGameTitle.textContent = 'You got Harambe home!'
         document.removeEventListener('keyup', handleKeyUp);
