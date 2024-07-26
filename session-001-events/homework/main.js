@@ -8,9 +8,11 @@ const house = {
 
 const player = {};
 
+const pits = [];
+
 const movesCounter = document.querySelector('#moves');
 
-function initGame(mapRows = 10, mapCols = 15){
+function initGame(mapRows = 10, mapCols = 15, numPits = 5){
     map.rows = mapRows;
     map.cols = mapCols;
     map.tiles = [];
@@ -21,6 +23,18 @@ function initGame(mapRows = 10, mapCols = 15){
     player.posX = 0;
     player.posY = 0;
     player.moves = 0;
+
+    pits.length = 0;
+
+    while (pits.length < numPits) {
+        const pitX = Math.floor(Math.random() * (map.cols - 1) + 1);
+        const pitY = Math.floor(Math.random() * (map.rows - 1) + 1);
+
+        //ENSURES THE PIT IS NOT AT THE SAME POSITION AS THE HOUSE OR ANOTHER PIT
+        if((pitX != house.x && pitY != house.y) && (!pits.some(pit => pitX == pit.x && pitY == pit.y))){
+            pits.push({x: pitX, y: pitY});
+        }
+    }
 }
 
 
@@ -44,8 +58,13 @@ function initUI(){
         } 
     }
     map.tiles[player.posY][player.posX].classList.add('gorilla');
-
+    map.tiles[player.posY][player.posX].classList.add('map-tile-visited');
+    
     map.tiles[house.y][house.x].classList.add('house');
+
+    pits.forEach(pit => {
+        map.tiles[pit.y][pit.x].classList.add('pit');
+    })
 
     document.addEventListener('keyup', handleKeyUp);
 }
@@ -106,26 +125,49 @@ function movePlayer(moveY, moveX){
 
     updateUI(map.tiles[prevPosY][prevPosX], map.tiles[player.posY][player.posX]);
 
+    const endGameTitle = document.querySelector('.end-screen-card-header');
+    const endScreen = document.querySelector('.end-screen');
+
     player.moves++;
     movesCounter.textContent = player.moves;
+    if (pits.some(pit => pit.x == player.posX && pit.y == player.posY)) {
+        endScreen.style.display = 'block';
+        endGameTitle.style.color = '#781110';
+        endGameTitle.textContent = 'Oh no! Harambe fell into a pit!';
+        document.removeEventListener('keyup', handleKeyUp);
+    }
+
     if(player.posX == house.x && player.posY == house.y){
-        document.removeEventListener('keyup', handleKeyUp)
-        console.log(`You won in ${player.moves} moves!`);
+        endScreen.style.display = 'block';
+        endGameTitle.style.color = '#356041';
+        endGameTitle.textContent = 'You got Harambe home!'
+        document.removeEventListener('keyup', handleKeyUp);
     }
 }
 
 function updateUI(previousTile, currentTile){
     previousTile.classList.remove('gorilla');    
-    previousTile.classList.add('map-tile-visited');
     previousTile.textContent = player.moves;
-
+    
+    currentTile.classList.add('map-tile-visited');
     currentTile.classList.add('gorilla');
 }
 
 function newGame(){
+    document.querySelector('.end-screen').style.display = 'none';
     initGame();
     initUI();
 }
 
+document.querySelector('#rules-btn').addEventListener('click', () => {
+    document.querySelector('.rules-pop-up').style.display = 'block'
+});
+
+document.querySelector('.close-btn').addEventListener('click', () => {
+    document.querySelector('.rules-pop-up').style.display = 'none'
+});
+
+
 document.querySelector('#new-game-btn').addEventListener('click', newGame);
+document.querySelector('#end-screen-btn').addEventListener('click', newGame);
 document.addEventListener('DOMContentLoaded', newGame);

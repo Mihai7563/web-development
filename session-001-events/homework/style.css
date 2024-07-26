@@ -20,13 +20,29 @@ body{
 }
 
 .title{
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     color: #d7dddb;
     font-size: 50px;
     letter-spacing: 1px;
     font-family: "Anton", sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+
+#rules-btn{
+    width: 10rem;
+    height: 2.5rem;
+    background-color: #b3b8b5;
+    font-size: x-large;
+    font-family: "Anton", sans-serif; 
+}
+
+#rules-btn:hover{
+    cursor: pointer;
+    background-color: #ebf0ee;
+    color: #2F2F34;
 }
 
 .display{
@@ -38,21 +54,22 @@ body{
 .map-tile{
     height: var(--tile-height);
     aspect-ratio: 1;
-    background-color: #316F40;
-    border: 1px solid #2d663b;
+    background-color: #b8bcbd;
+    border: 1px solid #939596;
 }
 
 .map-tile-visited{
-    background-color: #5a3116;
+    background-color: #316F40;
+    border: 1px solid #2d663b;
     color: antiquewhite;
     text-align: center;
     line-height: var(--tile-height);
 }
 
 .house{
-    background-image: url(img/house.svg);
+    /* background-image: url(img/house.svg);
     background-size: cover;
-    background-position: center;
+    background-position: center; */
 }
 
 .gorilla{
@@ -87,4 +104,113 @@ body{
     font-family: "Anton", sans-serif; 
     font-style: normal;
     color: #d7d7d7;
+}
+
+.rules-pop-up{
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.35);
+    position: fixed;
+    z-index: 1;
+}
+
+.rules-card{
+    height: 52rem;
+    width: 29rem;
+    position: relative;
+    top: 90px;
+    margin: auto;
+    background-color: #2F2F34;
+    display: flex;
+    flex-direction: column;
+}
+
+.pop-up-header{
+    text-align: center;
+    color: #d7dddb;
+    font-size: 40px;
+    font-family: "Anton", sans-serif; 
+}
+
+.pop-up-body{
+    color: #b7bdbb;
+    font-size: x-large;
+    font-family: "Anton", sans-serif; 
+}
+
+li{
+    margin-bottom: 7.5px;
+}
+
+.pop-up-footer{
+    display: flex;
+    justify-content: center;
+}
+
+.close-btn{
+    width: 7.5rem;
+    height: 3rem;
+    background-color: #d7dddb;
+    font-size: x-large;
+    font-family: "Anton", sans-serif; 
+}
+
+.close-btn:hover{
+    cursor: pointer;
+    background-color: #ebf0ee;
+    color: #2F2F34;
+}
+
+.end-screen{
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.35);
+    position: fixed;
+    z-index: 2;
+}
+
+.end-screen-card{
+    height: 15rem;
+    width: 30rem;
+    position: relative;
+    top: 285px;
+    margin: auto;
+    background-color: #2F2F34;
+    display: flex;
+    flex-direction: column;
+}
+
+.end-screen-card-header{
+    font-size: 45px;
+    text-align: center;
+    font-family: "Anton", sans-serif; 
+    text-wrap: balance;
+}
+
+.end-move-counter{
+    font-size: 28.5px;
+    text-align: center;
+    font-family: "Anton", sans-serif; 
+    color: #b7bdbb;
+}
+
+.end-screen-footer{
+    display: flex;
+    justify-content: center;
+}
+
+#end-screen-btn{
+    height: 3.35rem;
+    width: 11rem;
+    background-color: #d7d7d7;
+    font-size: x-large;
+    font-family: "Anton", sans-serif; 
+}
+
+#end-screen-btn:hover{
+    cursor: pointer;
+    background-color: #fcfbfb;
+    color: #2F2F34;
 }
