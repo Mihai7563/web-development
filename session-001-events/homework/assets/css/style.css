@@ -67,15 +67,15 @@ body{
 }
 
 .house{
-    /* background-image: url(img/house.svg);
+    background-image: url(../img/house.svg);
     background-size: cover;
-    background-position: center; */
+    background-position: center;
 }
 
 .gorilla{
     background-size: cover;
     background-position: center;
-    background-image: url(img/gorilla.svg);
+    background-image: url(../img/gorilla.svg);
 }
 
 .bottom{
