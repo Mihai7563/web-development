@@ -23,6 +23,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 25px;
     color: #d7dddb;
     font-size: 50px;
     letter-spacing: 1px;
@@ -43,6 +44,20 @@ body{
     cursor: pointer;
     background-color: #ebf0ee;
     color: #2F2F34;
+}
+
+.gorilla-sense{
+    width: 20rem;
+    margin: auto;
+    text-align: center;
+    color: #d7d7d7;
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-size: x-large;
+}
+
+.gorilla-sense-tingling{
+    color: #BA211D;
 }
 
 .display{
@@ -76,6 +91,18 @@ body{
     background-size: cover;
     background-position: center;
     background-image: url(../img/gorilla.svg);
+}
+
+.rock{
+    background-image: url(../img/rock.svg);
+    background-size: cover;
+    background-position: center;
+}
+
+.crocodile{
+    background-image: url(../img/crocodile.svg);
+    background-size: cover;
+    background-position: center;
 }
 
 .bottom{
@@ -187,6 +214,14 @@ li{
     text-align: center;
     font-family: "Anton", sans-serif; 
     text-wrap: balance;
+}
+
+.end-screen-card-header-win{
+    color: #356041;
+}
+
+.end-screen-card-header-lose{
+    color: #781110;
 }
 
 .end-move-counter{
