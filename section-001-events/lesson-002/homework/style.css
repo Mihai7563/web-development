@@ -1,0 +1,24 @@
+.player-card{
+    width: 17.5rem;
+    height: 20rem;
+    border: 1px solid;
+    border-radius: 3%;
+    background-image: linear-gradient(120deg, #2c2f36, #2d3035);
+}
+
+.player-icon{
+    height: 8rem;
+    aspect-ratio: 1;
+    border: 1px solid;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.player-title{
+    color: white;
+    font-size: x-large;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
