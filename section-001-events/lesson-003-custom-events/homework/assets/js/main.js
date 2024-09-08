@@ -1,10 +1,6 @@
-import settings from "./settings.js";
-import { CardModel } from "./cards-model.js";
-import { CardView } from "./cards-view.js";
+import { CardsController } from "./cards-controller.js";
 
 const parentElem = document.querySelector('.card-container');
 
-const cm = new CardModel(settings.cards);
-const cv = new CardView(parentElem);
-
-setInterval(() => cm.drawCard(), settings.interval);
+const cc = new CardsController(parentElem);
+const cc1 = new CardsController(parentElem);
