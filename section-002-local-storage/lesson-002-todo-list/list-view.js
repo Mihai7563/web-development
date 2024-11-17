@@ -9,7 +9,6 @@ export class ListView {
         this.uniqueID = uniqueID;
 
         this.init();
-        window.addEventListener(`titleChange${this.uniqueID}`, (e) => this.updateUI(e));
         window.addEventListener(`taskListChange${this.uniqueID}`, (e) => this.updateUI(e));
     }
 
@@ -38,10 +37,6 @@ export class ListView {
         this.editTitleBtn.addEventListener('click', () => this.initNewPopup('Edit Title', 16, `editTitleRequest${this.uniqueID}`));
         this.title.append(this.editTitleBtn);
         
-        const line = document.createElement('div');
-        line.classList.add('line');
-        header.append(line);
-        
         const body = document.createElement('card-body');
         body.classList.add(card-body);
         card.append(body);
@@ -53,39 +48,9 @@ export class ListView {
         this.newTaskBtn.classList.add('new-li-btn');
         body.append(this.newTaskBtn);
         this.newTaskBtn.textContent = '+';
-        this.newTaskBtn.addEventListener('click', () => this.initNewPopup('Add a new task', 80, `createTaskRequest${this.uniqueID}`));
+        this.newTaskBtn.addEventListener('click', () => this.initNewPopup('Add a new task', 40, `createTaskRequest${this.uniqueID}`));
     }
 
-    // initNewTaskPopup(){
-    //     this.background = document.createElement('div');
-    //     this.background.classList.add('transparent-bg', 'hidden');
-    //     this.parentElem.append(this.background);
-
-    //     this.newTaskPopupContainer = document.createElement('div');
-    //     this.newTaskPopupContainer.classList.add('new-task-input-container');
-    //     this.background.append(this.newTaskPopupContainer);
-    //     this.newTaskPopupContainer.textContent = 'Add a new task';
-    
-    //     this.newTaskInput = document.createElement('textarea');
-    //     this.newTaskInput.classList.add('new-task-input');
-    //     this.newTaskPopupContainer.append(this.newTaskInput);
-    //     this.newTaskInput.maxLength = 80;
-    
-    //     this.confirmBtn = document.createElement('div');
-    //     this.confirmBtn.classList.add('confirm-btn');
-    //     this.newTaskPopupContainer.append(this.confirmBtn);
-    //     this.confirmBtn.textContent = 'CONFIRM';
-
-    //     this.confirmBtn.addEventListener('click', () => {
-    //         this.background.classList.add('hidden');
-    //         const event = new CustomEvent(`createTaskRequest${this.uniqueID}`, {
-    //             detail: {
-    //                 text: this.newTaskInput.value
-    //             }
-    //         });  
-    //         window.dispatchEvent(event);
-    //     });
-    // }
 
     initNewPopup(popupText, inputMaxLength, eventName){
         console.log('test');
@@ -123,18 +88,6 @@ export class ListView {
     
 
     updateUI(event){
-        if (event.detail.eventTarget == 'title') {
-            console.log(event.detail.text); 
-            this.title.textContent = event.detail.text;
-
-            this.editTitleBtn = document.createElement('span');
-            this.editTitleBtn.classList.add('edit-title-btn');
-            this.editTitleBtn.textContent = '✏️';
-            this.editTitleBtn.addEventListener('click', () => this.initNewPopup('Edit Title', 16, `editTitleRequest${this.uniqueID}`));
-            this.title.append(this.editTitleBtn);
-        }
-        
-        if(event.detail.eventTarget == 'tasklist'){
             this.list.innerHTML = '';
             event.detail.tasks.forEach((task, index) => {
     
@@ -143,7 +96,7 @@ export class ListView {
                 
                 const liTextContainer = document.createElement('span');
                 liTextContainer.classList.add('li-text-container')
-                liTextContainer.textContent = task.text;
+                liTextContainer.textContent = task.name;
                 
                 if(task.done){
                     liTextContainer.classList.add('task-completed');
@@ -152,7 +105,7 @@ export class ListView {
                 li.append(liTextContainer);
                 
                 const deleteBtn = document.createElement('button');
-                deleteBtn.textContent = '';
+                deleteBtn.textContent = '🗑️';
                 deleteBtn.classList.add('delete-btn');
                 li.append(deleteBtn);
     
@@ -176,11 +129,17 @@ export class ListView {
     
                     window.dispatchEvent(event);
                 })
-            })
+            });
+        if(event.detail.tasks.length == 4){
+            console.log(event.detail.tasks.length);
+            this.newTaskBtn.classList.add('hidden');
         }
-
-        // task.addEventListener('click', () => {
-        //     task.classList.toggle('task-completed');
-        // })
+        else{
+            console.log(event.detail.tasks.length);
+            
+            this.newTaskBtn.classList.remove('hidden');
+        }
+    
+        
     }
 }
