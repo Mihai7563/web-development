@@ -1,0 +1,27 @@
+.delete,
+.edit{
+    cursor: pointer;
+}
+
+.list-container{
+}
+
+.preloader{
+    min-height: 17rem;
+}
+
+.preloader::before{
+    /* vertical-align: -50%; */
+    color: #757575;
+    font-size: 5rem;
+    animation: rotate 3s infinite;
+}
+
+@keyframes rotate{
+    100% {transform: rotate(360deg)}
+}
+
+
+.students-list span{
+    flex: 1;
+}

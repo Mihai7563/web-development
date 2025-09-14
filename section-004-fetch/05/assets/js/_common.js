@@ -1,0 +1,1 @@
+export const apiUrl = "https://demo-api.siit.ro/api";
