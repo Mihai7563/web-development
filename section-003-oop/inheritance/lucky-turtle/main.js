@@ -1,32 +1,19 @@
-import { Turtle } from "./turtle.js";
-import { LuckyTurtle } from "./lucky-turtle.js";
+import { TurtleRaceGame } from "./game.js";
+import { turtleFactory } from "./turtle-factory.js";
+import { Rabbit } from './rabbit.js';
 
-let turtles = [];
-let turtleNames = ['Donatello', 'Leonardo', 'Michelangelo', 'Raphael'];
+const game = new TurtleRaceGame('Dabuleni dus-intors');
 
-for(let i = 0; i < turtleNames.length; i++){
-    const luckyTurtle = Math.random() <= 0.4;
-    console.log(luckyTurtle);
+const turtleNames = ['Donatello', 'Leonardo', 'Michelangelo', 'Raphael'];
+turtleNames.forEach(turtle => game.addPlayer(turtleFactory(turtle)));
 
-    if(luckyTurtle == true){
-        turtles.push(new LuckyTurtle(`${turtleNames[i]} (LUCKY)`));
-    }
-    else{
-        turtles.push(new Turtle(turtleNames[i]));
-    }
-}
-
-console.log(turtles);
+const rabbitNames = ['Bugs', 'Thumper'];
+rabbitNames.forEach(rabbit => game.addPlayer(new Rabbit(rabbit)));
 
 
-for(let i = 0; i < turtles.length; i++){
-    console.log('');
-    console.log(`🐢🐢ROUND ${i + 1} BEGINS🐢🐢`);
+game.listPlayers();
 
-    turtles.forEach(turtle => {
-        console.log('---------------------------');
-        
-        const roundScore = turtle.newRound();
-        console.log(`${turtle.name} walked ${roundScore}m. New distance: ${turtle.score}m`);
-    })
-}
+game.start();
+
+console.log(game.leaderboard);
+game.showWinner();
