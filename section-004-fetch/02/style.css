@@ -1,0 +1,6 @@
+.img-container div{
+    background-size: cover;
+    background-position: center;
+    height: 15rem;
+    aspect-ratio: 1;
+}
