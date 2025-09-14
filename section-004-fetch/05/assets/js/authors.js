@@ -1,4 +1,5 @@
 import { CrudFetch } from "./_crud-fetch.js";
+import { showPreloader, hidePreloader } from "./_common.js";
 const authorsContainer = document.querySelector("#authors-container");
 
 const authorsForm = document.querySelector("#authors-form");
@@ -13,9 +14,6 @@ const confirmEditBtn = document.querySelector("#confirm-edit-btn");
 
 const confirmDeleteBtn = document.querySelector("#confirm-delete-btn");
 
-
-const preloader = document.querySelector('.preloader');
-
 const apiUrl = "https://demo-api.siit.ro/api";
 
 const authorsCrud = new CrudFetch(`${apiUrl}/authors`)
@@ -23,7 +21,7 @@ const authorsCrud = new CrudFetch(`${apiUrl}/authors`)
 // ADD CLICK EVENT LISTENER FOR EDIT POPUP 
 confirmEditBtn.addEventListener('click', () => {
   const authorId = confirmEditBtn.getAttribute('data-author-id');
-  showPreloader();
+  showPreloader(authorsContainer);
   authorsCrud.editResource(authorId, { name: editAuthorInput.value }, handleEditAuthorResponse);
 });
 
@@ -31,20 +29,9 @@ confirmEditBtn.addEventListener('click', () => {
 // ADD CLICK EVENT LISTENER FOR EDIT POPUP 
 confirmDeleteBtn.addEventListener("click", () => {
   const authorId = confirmDeleteBtn.getAttribute('data-author-id');
-  showPreloader();
+  showPreloader(authorsContainer);
   authorsCrud.deleteResource(authorId, handleDeleteAuthorResponse)
 });
-
-
-function showPreloader(){
-  authorsContainer.classList.add('d-none');
-  preloader.classList.remove('d-none');
-}
-
-function hidePreloader(){
-  preloader.classList.add('d-none');
-  authorsContainer.classList.remove('d-none');
-}
 
 
 function listAuthors(authors) {
@@ -80,7 +67,7 @@ function listAuthors(authors) {
     });
   });
 
-  hidePreloader();
+  hidePreloader(authorsContainer);
 }
 
 
@@ -140,7 +127,7 @@ function handleEditAuthorResponse(data){
 }
 
 function loadAuthorsList(){
-  showPreloader();
+  showPreloader(authorsContainer);
   authorsCrud.getCollection(listAuthors);
 }
 

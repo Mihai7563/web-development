@@ -22,19 +22,19 @@
                     <div class="mb-3">
                         <label for="student-name" class="form-label">Student name</label>
                         <input type="text" class="form-control" required id="student-name" aria-describedby="student-name-help">
-                        <div class="invalid-feedback" id="add-invalid-feedback-1"></div>
+                        <div class="invalid-feedback" id="student-name-error"></div>
                         <div id="student-name-help" class="form-text">*Input the name and surname of the student (min. 3 characters)</div>
                     </div>
                     <div class="mb-3">
                         <label for="student-email" class="form-label">Student email</label>
                         <input type="text" class="form-control" required id="student-email" aria-describedby="student-email-help">
-                        <div class="invalid-feedback" id="add-invalid-feedback"></div>
+                        <div class="invalid-feedback" id="student-email-error"></div>
                         <div id="student-email-help" class="form-text">*Input the email of the student (valid email)</div>
                     </div>
                     <div class="mb-3">
                         <label for="student-phone" class="form-label">Student phone number</label>
                         <input type="text" class="form-control" required id="student-phone" aria-describedby="student-phone-help">
-                        <div class="invalid-feedback" id="add-invalid-feedback"></div>
+                        <div class="invalid-feedback" id="student-phone-error"></div>
                         <div id="student-phone-help" class="form-text">Input the phone number of the student (max. 15 characters)</div>
                     </div>
                     <button type="submit" class="btn btn-primary" id="add-student-button">Add student</button>
@@ -46,8 +46,30 @@
                     <i class="preloader bi bi-arrow-clockwise d-flex justify-content-center align-items-center d-none"></i>
                     <ul class="ps-0" id="student-container"></ul>
                 </div>
-            </div>            
+            </div>
+
+            <!-- Remove author modal -->
+            <div class="modal fade" id="deleteStudent" tabindex="-1" aria-labelledby="deleteStudentModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteStudentModal">Remove student?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to remove <span class="student-name-span fw-bold"></span> from the list?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="confirm-delete-btn" data-bs-dismiss="modal">Remove student</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
